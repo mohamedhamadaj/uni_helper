@@ -26,4 +26,23 @@ const protect = async (req, res, next) => {
     }
 };
 
-module.exports =  { protect } ;
+
+// في authMiddleware.js
+const providerOnly = (req, res, next) => {
+    if (req.user.role !== 'provider') {
+        return res.status(403).json({ message: 'Only providers can access this' });
+    }
+    next();
+};
+
+const userOnly = (req, res, next) => {
+    if (req.user && req.user.role === 'user') {
+        next();
+    } else {
+        res.status(403).json({ message: 'Access denied, users only' });
+    }
+};
+
+module.exports = { protect, providerOnly, userOnly };
+
+module.exports = { protect, providerOnly, userOnly };

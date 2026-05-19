@@ -22,16 +22,10 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'admin', 'provider'],
         default: 'user',
         required: true
-    },
-
-    updatedAt: {
-        type: Date
     }
-});
 
-userSchema.pre('save', function (next) {
-    this.updatedAt = Date.now();
-    next();
+}, { 
+    timestamps: true
 });
 
 module.exports = mongoose.model('User', userSchema);
