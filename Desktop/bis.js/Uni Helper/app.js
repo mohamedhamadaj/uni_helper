@@ -12,6 +12,11 @@ app.use('/api/services', serviceRouter);
 const requestRouter = require('./routes/requestRoutes');
 app.use('/api/requests', requestRouter);
 
+const ratingRouter = require('./routes/ratingRoutes');
+app.use('/api/ratings', ratingRouter);
+
+const adminRouter = require('./routes/adminRoutes');
+app.use('/api/admin', adminRouter);
 
 
 
